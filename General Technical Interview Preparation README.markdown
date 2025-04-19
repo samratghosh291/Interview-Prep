@@ -230,3 +230,107 @@ When you search something on the internet (e.g., typing “best coffee shops” 
 
 **Analogy**: Searching is like asking a librarian for book recommendations—you submit a question, they search the catalog, and return a list of books, which you then browse.
 
+Below is a concise explanation of **HTTP status code ranges** and the most **important HTTP status codes** commonly discussed in technical interviews. This is tailored to fit the **Technical Interview Preparation README** style, with clear examples, interview insights, and an analogy for memorability. A diagram is included to visualize the status code ranges.
+
+---
+
+## HTTP Status Codes: Ranges and Important Codes
+
+**HTTP status codes** are three-digit numbers returned by a server in response to a client's HTTP request, indicating the outcome of the request. They are grouped into five ranges, each with a distinct purpose. Below, we cover the ranges, highlight the most important codes for interviews, and provide context for their use.
+
+### HTTP Status Code Ranges
+
+HTTP status codes are categorized by their first digit, defining the type of response:
+
+1. **1xx (Informational)**:
+   - Indicates interim responses; the request is being processed.
+   - Rarely used in typical web applications.
+   - Example: **101 Switching Protocols** (e.g., WebSocket handshake).
+
+2. **2xx (Success)**:
+   - The request was successfully received, understood, and processed.
+   - Common in successful API or webpage requests.
+
+3. **3xx (Redirection)**:
+   - The client must take additional action to complete the request, often redirecting to another URL.
+   - Used for URL changes or load balancing.
+
+4. **4xx (Client Error)**:
+   - The request contains errors or cannot be fulfilled due to client issues (e.g., bad input, unauthorized access).
+   - Indicates client-side problems to fix.
+
+5. **5xx (Server Error)**:
+   - The server failed to fulfill a valid request due to internal issues.
+   - Indicates server-side problems to debug.
+
+
+### Important HTTP Status Codes
+
+Below are the most critical HTTP status codes for technical interviews, with their meanings, use cases, and examples:
+
+#### 1xx: Informational
+- **101 Switching Protocols**:
+  - **Purpose**: Server agrees to switch protocols (e.g., upgrading HTTP to WebSocket).
+  - **Example**: Client requests WebSocket; server responds with 101.
+  - **Interview Note**: Rare, but relevant for real-time apps (e.g., chat systems).
+
+#### 2xx: Success
+- **200 OK**:
+  - **Purpose**: Request succeeded, returning expected data.
+  - **Example**: `GET /users` returns user list in JSON.
+  - **Interview Note**: Most common success code; discuss with GET or PUT.
+- **201 Created**:
+  - **Purpose**: Resource successfully created.
+  - **Example**: `POST /users` adds a new user, returns 201 with resource URI.
+  - **Interview Note**: Emphasize POST for CRUD Create operations.
+- **204 No Content**:
+  - **Purpose**: Request succeeded, no response body (e.g., after DELETE).
+  - **Example**: `DELETE /users/123` removes a user, returns 204.
+  - **Interview Note**: Highlight for DELETE or updates without data.
+
+#### 3xx: Redirection
+- **301 Moved Permanently**:
+  - **Purpose**: Resource has permanently moved to a new URL.
+  - **Example**: Redirect from `example.com/old` to `example.com/new`.
+  - **Interview Note**: Discuss SEO implications and caching.
+- **302 Found (or Temporary Redirect)**:
+  - **Purpose**: Resource temporarily moved.
+  - **Example**: Redirect during maintenance to a backup page.
+  - **Interview Note**: Contrast with 301; mention 307/308 for modern redirects.
+
+#### 4xx: Client Error
+- **400 Bad Request**:
+  - **Purpose**: Invalid request syntax or parameters.
+  - **Example**: `POST /users` with malformed JSON returns 400.
+  - **Interview Note**: Common in API validation; discuss error messages.
+- **401 Unauthorized**:
+  - **Purpose**: Authentication required or invalid credentials.
+  - **Example**: Accessing `GET /admin` without a valid JWT returns 401.
+  - **Interview Note**: Distinguish from 403; mention auth headers.
+- **403 Forbidden**:
+  - **Purpose**: Client lacks permission to access resource.
+  - **Example**: Non-admin accessing `GET /admin` returns 403.
+  - **Interview Note**: Contrast with 401; discuss role-based access.
+- **404 Not Found**:
+  - **Purpose**: Resource doesn’t exist.
+  - **Example**: `GET /users/999` for non-existent user returns 404.
+  - **Interview Note**: Common in REST; discuss user-friendly error pages.
+- **429 Too Many Requests**:
+  - **Purpose**: Client exceeded rate limit.
+  - **Example**: API rate limit hit returns 429.
+  - **Interview Note**: Discuss rate limiting and retry-after headers.
+
+#### 5xx: Server Error
+- **500 Internal Server Error**:
+  - **Purpose**: Generic server error; something went wrong.
+  - **Example**: Database crash during `GET /users` returns 500.
+  - **Interview Note**: Highlight debugging (logs, monitoring); avoid exposing details.
+- **502 Bad Gateway**:
+  - **Purpose**: Server acting as gateway received invalid upstream response.
+  - **Example**: Load balancer can’t reach backend server, returns 502.
+  - **Interview Note**: Discuss microservices or proxy issues.
+- **503 Service Unavailable**:
+  - **Purpose**: Server temporarily unavailable (e.g., maintenance, overload).
+  - **Example**: Server down for updates returns 503.
+  - **Interview Note**: Mention retry mechanisms and backoff strategies.
+
